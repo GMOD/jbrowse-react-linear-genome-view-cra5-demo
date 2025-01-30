@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { createRoot, hydrateRoot } from 'react-dom/client'
 import '@fontsource/roboto'
 import {
   createViewState,
@@ -32,9 +31,6 @@ function View() {
         },
       },
       makeWorkerInstance,
-
-      hydrateFn: hydrateRoot,
-      createRootFn: createRoot,
     })
     setViewState(state)
   }, [])
