@@ -93,6 +93,18 @@ const tracks = [
         },
       },
     },
+
+    displays: [
+      {
+        type: 'LinearVariantDisplay',
+        displayId:
+          'ALL.wgs.shapeit2_integrated_snvindels_v2a.GRCh38.27022019.sites.vcf-LinearVariantDisplay',
+        renderer: {
+          type: 'SvgFeatureRenderer',
+          color1: 'jexl:colorFeature(feature)',
+        },
+      },
+    ],
   },
   {
     type: 'QuantitativeTrack',
