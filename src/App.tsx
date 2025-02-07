@@ -4,33 +4,31 @@ import {
   createViewState,
   JBrowseLinearGenomeView,
 } from '@jbrowse/react-linear-genome-view'
-import makeWorkerInstance from '@jbrowse/react-linear-genome-view/esm/makeWorkerInstance'
 
 import assembly from './assembly'
 import tracks from './tracks'
 import defaultSession from './defaultSession'
+import MyPlugin from './MyPlugin'
 
 type ViewModel = ReturnType<typeof createViewState>
 
 function View() {
   const [viewState, setViewState] = useState<ViewModel>()
-  const [patches, setPatches] = useState('')
   const [stateSnapshot, setStateSnapshot] = useState('')
 
   useEffect(() => {
     const state = createViewState({
       assembly,
       tracks,
-      onChange: (patch: any) => {
-        setPatches(previous => previous + JSON.stringify(patch) + '\n')
-      },
+      plugins: [MyPlugin],
       defaultSession,
       configuration: {
         rpc: {
           defaultDriver: 'WebWorkerRpcDriver',
         },
       },
-      makeWorkerInstance,
+      makeWorkerInstance: () =>
+        new Worker(new URL('./rpcWorker', import.meta.url)),
     })
     setViewState(state)
   }, [])
@@ -106,7 +104,6 @@ function View() {
         </a>
         . The patches for the component on this page are shown below.
       </p>
-      <textarea value={patches} readOnly rows={5} cols={80} wrap="off" />
     </>
   )
 }
