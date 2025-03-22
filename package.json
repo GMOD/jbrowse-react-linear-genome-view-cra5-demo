@@ -7,7 +7,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@craco/craco": "^7.1.0",
     "@fontsource/roboto": "^5.0.13",
-    "@jbrowse/react-linear-genome-view": "^3.0.0",
+    "@jbrowse/react-linear-genome-view2": "^3.0.0",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "node-polyfill-webpack-plugin": "^4.0.0",

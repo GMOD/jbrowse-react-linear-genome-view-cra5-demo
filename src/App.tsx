@@ -3,12 +3,10 @@ import '@fontsource/roboto'
 import {
   createViewState,
   JBrowseLinearGenomeView,
-} from '@jbrowse/react-linear-genome-view'
-import makeWorkerInstance from '@jbrowse/react-linear-genome-view/esm/makeWorkerInstance'
+} from '@jbrowse/react-linear-genome-view2'
+import makeWorkerInstance from '@jbrowse/react-linear-genome-view2/esm/makeWorkerInstance'
 
-import assembly from './assembly'
-import tracks from './tracks'
-import defaultSession from './defaultSession'
+import { config } from './config'
 
 type ViewModel = ReturnType<typeof createViewState>
 
@@ -19,12 +17,7 @@ function View() {
 
   useEffect(() => {
     const state = createViewState({
-      assembly,
-      tracks,
-      onChange: (patch: any) => {
-        setPatches(previous => previous + JSON.stringify(patch) + '\n')
-      },
-      defaultSession,
+      ...config,
       configuration: {
         rpc: {
           defaultDriver: 'WebWorkerRpcDriver',
